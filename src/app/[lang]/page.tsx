@@ -1,20 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getDictionary, Locale } from "../../i18n";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 
-export default function HomePage() {
+export default async function HomePage(props: { params: Promise<{ lang: string }> }) {
+  const { lang: paramLang } = await props.params;
+  const lang = paramLang as Locale;
+  const dict = await getDictionary(lang);
+
   return (
     <>
       {/* ─── Navbar ─── */}
       <nav className="navbar">
         <div className="container navbar-inner">
-          <Link href="/" className="navbar-logo">
+          <Link href={`/${lang}`} className="navbar-logo">
             <Image src="/icon.png" alt="Mensola" width={36} height={36} />
             <span>mensola</span>
-            <span className="navbar-badge">Beta</span>
+            <span className="navbar-badge">{dict.nav.beta}</span>
           </Link>
-          <Link href="/beta" className="btn-primary">
-            Beta&apos;ya Başvur →
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Link href={`/${lang}/beta`} className="btn-primary">
+              {dict.nav.apply}
+            </Link>
+            <LanguageSwitcher currentLang={lang} />
+          </div>
         </div>
       </nav>
 
@@ -29,39 +38,36 @@ export default function HomePage() {
           <div className="hero-content">
             <div className="hero-eyebrow">
               <span className="hero-eyebrow-dot" />
-              Kapalı Beta — Sınırlı Kontenjan
+              {dict.home.heroEyebrow}
             </div>
             <h1 className="hero-title">
-              Kültürünü{" "}
-              <span className="gradient-text">Keşfet,</span>
-              <br />
-              Paylaş ve Takip Et
+              {dict.home.heroTitle1}{" "}
+              <span className="gradient-text">{dict.home.heroTitle2}</span>
             </h1>
             <p className="hero-subtitle">
-              Mensola ile dinlediğin müziği, izlediğin filmleri ve okuduğun kitapları
-              tek bir yerde topla. Beğenilerini keşfet, arkadaşlarınla paylaş.
+              {dict.home.heroSubtitle}
             </p>
             <div className="hero-actions">
-              <Link href="/beta" className="btn-primary btn-large">
-                🚀 Kapalı Beta&apos;ya Katıl
+              <Link href={`/${lang}/beta`} className="btn-primary btn-large">
+                {dict.home.heroBtnPrimary}
               </Link>
               <a href="#features" className="btn-secondary btn-large">
-                Daha Fazla Öğren
+                {dict.home.heroBtnSecondary}
               </a>
             </div>
 
             <div className="hero-stats">
               <div className="hero-stat">
-                <div className="hero-stat-number">3-in-1</div>
-                <div className="hero-stat-label">Müzik · Film · Kitap</div>
+                <div className="hero-stat-number">{dict.home.stat1Num}</div>
+                <div className="hero-stat-label">{dict.home.stat1Lbl}</div>
               </div>
               <div className="hero-stat">
-                <div className="hero-stat-number">100%</div>
-                <div className="hero-stat-label">Ücretsiz Beta</div>
+                <div className="hero-stat-number">{dict.home.stat2Num}</div>
+                <div className="hero-stat-label">{dict.home.stat2Lbl}</div>
               </div>
               <div className="hero-stat">
-                <div className="hero-stat-number">iOS &amp; Android</div>
-                <div className="hero-stat-label">Çoklu Platform</div>
+                <div className="hero-stat-number">{dict.home.stat3Num}</div>
+                <div className="hero-stat-label">{dict.home.stat3Lbl}</div>
               </div>
             </div>
           </div>
@@ -77,19 +83,19 @@ export default function HomePage() {
               {/* Left screen - Search */}
               <div className="mockup-screen side left">
                 <div className="mock-header">
-                  <div className="mock-title">Keşfet</div>
-                  <div className="mock-subtitle-sm">Arama</div>
+                  <div className="mock-title">{dict.home.mockTitleDiscover}</div>
+                  <div className="mock-subtitle-sm">{dict.home.mockSubtitleSearch}</div>
                 </div>
                 <div className="mock-search">
                   <svg className="mock-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
                   </svg>
-                  <span className="mock-search-text">Sanatçı, film, kitap...</span>
+                  <span className="mock-search-text">{dict.home.mockSearch}</span>
                 </div>
                 <div className="mock-pills">
-                  <div className="mock-pill active">🎵 Müzik</div>
-                  <div className="mock-pill inactive">🎬 Film</div>
-                  <div className="mock-pill inactive">📚 Kitap</div>
+                  <div className="mock-pill active">{dict.home.mockPills[0]}</div>
+                  <div className="mock-pill inactive">{dict.home.mockPills[1]}</div>
+                  <div className="mock-pill inactive">{dict.home.mockPills[2]}</div>
                 </div>
                 <div className="mock-cards">
                   {[
@@ -115,21 +121,21 @@ export default function HomePage() {
               {/* Center screen - Home Feed */}
               <div className="mockup-screen main">
                 <div className="mock-header">
-                  <div className="mock-title">Mensola</div>
-                  <div className="mock-subtitle-sm">Ana Sayfa</div>
+                  <div className="mock-title">{dict.home.mockTitleHome}</div>
+                  <div className="mock-subtitle-sm">{dict.home.mockSubtitleHome}</div>
                 </div>
                 <div className="mock-pills">
-                  <div className="mock-pill active">🎵 Müzik</div>
-                  <div className="mock-pill inactive">🎬 Film</div>
-                  <div className="mock-pill inactive">📚 Kitap</div>
+                  <div className="mock-pill active">{dict.home.mockPills[0]}</div>
+                  <div className="mock-pill inactive">{dict.home.mockPills[1]}</div>
+                  <div className="mock-pill inactive">{dict.home.mockPills[2]}</div>
                 </div>
                 <div className="mock-cards">
                   {[
-                    { color: "linear-gradient(135deg,#667eea,#764ba2)", name: "Lofi Beats", artist: "Various Artists", likes: "24" },
-                    { color: "linear-gradient(135deg,#f093fb,#f5576c)", name: "Dark Side of Moon", artist: "Pink Floyd", likes: "89" },
-                    { color: "linear-gradient(135deg,#4facfe,#00f2fe)", name: "Kid A", artist: "Radiohead", likes: "142" },
-                    { color: "linear-gradient(135deg,#43e97b,#38f9d7)", name: "Random Access Memories", artist: "Daft Punk", likes: "67" },
-                    { color: "linear-gradient(135deg,#fa709a,#fee140)", name: "In Rainbows", artist: "Radiohead", likes: "211" },
+                    { color: "linear-gradient(135deg,#667eea,#764ba2)", name: "Lofi Beats", artist: "Various Artists" },
+                    { color: "linear-gradient(135deg,#f093fb,#f5576c)", name: "Dark Side of Moon", artist: "Pink Floyd" },
+                    { color: "linear-gradient(135deg,#4facfe,#00f2fe)", name: "Kid A", artist: "Radiohead" },
+                    { color: "linear-gradient(135deg,#43e97b,#38f9d7)", name: "Random Access Memories", artist: "Daft Punk" },
+                    { color: "linear-gradient(135deg,#fa709a,#fee140)", name: "In Rainbows", artist: "Radiohead" },
                   ].map((item, i) => (
                     <div className="mock-card" key={i}>
                       <div className="mock-card-art" style={{ background: item.color }} />
@@ -154,11 +160,11 @@ export default function HomePage() {
                   <div className="mock-profile-stats">
                     <div className="mock-profile-stat">
                       <div className="mock-profile-stat-num">247</div>
-                      <div className="mock-profile-stat-lbl">Takipçi</div>
+                      <div className="mock-profile-stat-lbl">{dict.home.mockStatFollowers}</div>
                     </div>
                     <div className="mock-profile-stat">
                       <div className="mock-profile-stat-num">183</div>
-                      <div className="mock-profile-stat-lbl">Takip</div>
+                      <div className="mock-profile-stat-lbl">{dict.home.mockStatFollowing}</div>
                     </div>
                   </div>
                 </div>
@@ -166,24 +172,24 @@ export default function HomePage() {
                   <div className="mock-category">
                     <div className="mock-cat-icon">🎵</div>
                     <div className="mock-cat-count">1.2k</div>
-                    <div className="mock-cat-label">Parça</div>
+                    <div className="mock-cat-label">{dict.home.mockCatTrack}</div>
                   </div>
                   <div className="mock-category">
                     <div className="mock-cat-icon">🎬</div>
                     <div className="mock-cat-count">342</div>
-                    <div className="mock-cat-label">Film</div>
+                    <div className="mock-cat-label">{dict.home.mockCatMovie}</div>
                   </div>
                   <div className="mock-category">
                     <div className="mock-cat-icon">📚</div>
                     <div className="mock-cat-count">89</div>
-                    <div className="mock-cat-label">Kitap</div>
+                    <div className="mock-cat-label">{dict.home.mockCatBook}</div>
                   </div>
                 </div>
                 <div className="mock-cards">
                   {[
-                    { color: "linear-gradient(135deg,#4facfe,#00f2fe)", name: "Son Dinlenenler", artist: "Playlist" },
-                    { color: "linear-gradient(135deg,#fa709a,#fee140)", name: "Favori Filmler", artist: "Film Listesi" },
-                    { color: "linear-gradient(135deg,#43e97b,#38f9d7)", name: "Okunacaklar", artist: "Kitap Listesi" },
+                    { color: "linear-gradient(135deg,#4facfe,#00f2fe)", name: dict.home.mockList1, artist: dict.home.mockList1Desc },
+                    { color: "linear-gradient(135deg,#fa709a,#fee140)", name: dict.home.mockList2, artist: dict.home.mockList2Desc },
+                    { color: "linear-gradient(135deg,#43e97b,#38f9d7)", name: dict.home.mockList3, artist: dict.home.mockList3Desc },
                   ].map((item, i) => (
                     <div className="mock-card" key={i}>
                       <div className="mock-card-art" style={{ background: item.color }} />
@@ -204,68 +210,62 @@ export default function HomePage() {
       <section className="features" id="features">
         <div className="container">
           <div className="section-header">
-            <div className="section-eyebrow">Özellikler</div>
+            <div className="section-eyebrow">{dict.home.featuresEyebrow}</div>
             <h2 className="section-title">
-              Her şey tek bir{" "}
-              <span className="gradient-text">platformda</span>
+              {dict.home.featuresTitle1}{" "}
+              <span className="gradient-text">{dict.home.featuresTitle2}</span>
             </h2>
             <p className="section-subtitle">
-              Mensola, kültürel tüketim alışkanlıklarını düzenler ve sosyal bir deneyime dönüştürür.
+              {dict.home.featuresSubtitle}
             </p>
           </div>
 
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon-wrapper">🎵</div>
-              <h3 className="feature-title">Müzik Takibi</h3>
+              <h3 className="feature-title">{dict.home.feat1Title}</h3>
               <p className="feature-description">
-                Dinlediğin parçaları, albümleri ve sanatçıları kaydet. Playlist&apos;ler oluştur
-                ve müzik geçmişini takip et.
+                {dict.home.feat1Desc}
               </p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon-wrapper">🎬</div>
-              <h3 className="feature-title">Film &amp; Dizi Listesi</h3>
+              <h3 className="feature-title">{dict.home.feat2Title}</h3>
               <p className="feature-description">
-                İzlediğin filmleri ve dizileri listele, puanla ve yorumla. &quot;İzlenecekler&quot;
-                listeni oluştur, arkadaşlarının önerilerine göz at.
+                {dict.home.feat2Desc}
               </p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon-wrapper">✍️</div>
-              <h3 className="feature-title">Günlük &amp; Etkileşim</h3>
+              <h3 className="feature-title">{dict.home.feat3Title}</h3>
               <p className="feature-description">
-                İzlediklerin ve dinlediklerin üzerine düşüncelerini paylaş,
-                arkadaşlarınla tartış. Her içerik bir sohbetin başlangıcı.
+                {dict.home.feat3Desc}
               </p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon-wrapper">🤝</div>
-              <h3 className="feature-title">Ortak Zevkler &amp; Takip</h3>
+              <h3 className="feature-title">{dict.home.feat4Title}</h3>
               <p className="feature-description">
-                Arkadaşlarının ne izleyip ne dinlediğini anlık akışta gör.
-                Ortak beğenileri keşfet, kültür köprüsü kur.
+                {dict.home.feat4Desc}
               </p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon-wrapper">👤</div>
-              <h3 className="feature-title">Sosyal Profil</h3>
+              <h3 className="feature-title">{dict.home.feat5Title}</h3>
               <p className="feature-description">
-                Beğenilerini ve aktivitelerini sergile. Takipçilerine kendi
-                kültürel dünyayı göster.
+                {dict.home.feat5Desc}
               </p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon-wrapper">📋</div>
-              <h3 className="feature-title">Özel Listeler</h3>
+              <h3 className="feature-title">{dict.home.feat6Title}</h3>
               <p className="feature-description">
-                Favori filmlerinden ve şarkılarından oluşan özel koleksiyonlar
-                oluştur. Listelerini paylaş, başkalarının listelerini keşfet.
+                {dict.home.feat6Desc}
               </p>
             </div>
           </div>
@@ -273,29 +273,29 @@ export default function HomePage() {
           {/* Coming Soon */}
           <div className="coming-soon-section">
             <div className="coming-soon-header">
-              <span className="coming-soon-badge">🛠️ Yakında Geliyor</span>
-              <p className="coming-soon-subtitle">Şu an geliştirme aşamasında olan özellikler</p>
+              <span className="coming-soon-badge">{dict.home.soonBadge}</span>
+              <p className="coming-soon-subtitle">{dict.home.soonSubtitle}</p>
             </div>
             <div className="coming-soon-grid">
               <div className="coming-soon-card">
                 <span className="coming-soon-icon">📚</span>
                 <div className="coming-soon-info">
-                  <div className="coming-soon-title">Kitap Rafı</div>
-                  <div className="coming-soon-desc">Okuduğun kitapları dijital rafına ekle, okuma hedefleri belirle.</div>
+                  <div className="coming-soon-title">{dict.home.soon1Title}</div>
+                  <div className="coming-soon-desc">{dict.home.soon1Desc}</div>
                 </div>
               </div>
               <div className="coming-soon-card">
                 <span className="coming-soon-icon">🔍</span>
                 <div className="coming-soon-info">
-                  <div className="coming-soon-title">Akıllı Keşif</div>
-                  <div className="coming-soon-desc">Zevklerine göre kişiselleştirilmiş içerik önerileri.</div>
+                  <div className="coming-soon-title">{dict.home.soon2Title}</div>
+                  <div className="coming-soon-desc">{dict.home.soon2Desc}</div>
                 </div>
               </div>
               <div className="coming-soon-card">
                 <span className="coming-soon-icon">📊</span>
                 <div className="coming-soon-info">
-                  <div className="coming-soon-title">Kişisel İstatistikler</div>
-                  <div className="coming-soon-desc">Dinleme ve izleme alışkanlıklarının detaylı analizleri.</div>
+                  <div className="coming-soon-title">{dict.home.soon3Title}</div>
+                  <div className="coming-soon-desc">{dict.home.soon3Desc}</div>
                 </div>
               </div>
             </div>
@@ -307,13 +307,13 @@ export default function HomePage() {
       <section className="how-it-works" id="how">
         <div className="container">
           <div className="section-header">
-            <div className="section-eyebrow">Nasıl Çalışır?</div>
+            <div className="section-eyebrow">{dict.home.howEyebrow}</div>
             <h2 className="section-title">
-              Üç adımda{" "}
-              <span className="gradient-text">başla</span>
+              {dict.home.howTitle1}{" "}
+              <span className="gradient-text">{dict.home.howTitle2}</span>
             </h2>
             <p className="section-subtitle">
-              Mensola&apos;yı kullanmak son derece basit. Hesabını oluştur, beğenilerini ekle, keşfet.
+              {dict.home.howSubtitle}
             </p>
           </div>
 
@@ -321,26 +321,23 @@ export default function HomePage() {
             <div className="steps-connector" />
             <div className="step-item">
               <div className="step-number">1</div>
-              <h3 className="step-title">Hesap Oluştur</h3>
+              <h3 className="step-title">{dict.home.step1Title}</h3>
               <p className="step-desc">
-                Birkaç saniyede kaydol. Profil fotoğrafını ekle,
-                kısa bir bio yaz ve hazırsın.
+                {dict.home.step1Desc}
               </p>
             </div>
             <div className="step-item">
               <div className="step-number">2</div>
-              <h3 className="step-title">Kütüphaneni Doldur</h3>
+              <h3 className="step-title">{dict.home.step2Title}</h3>
               <p className="step-desc">
-                Sevdiğin müzikleri, filmleri ve kitapları ekle.
-                Mevcut platformlardan içe aktarma yakında geliyor.
+                {dict.home.step2Desc}
               </p>
             </div>
             <div className="step-item">
               <div className="step-number">3</div>
-              <h3 className="step-title">Keşfet & Paylaş</h3>
+              <h3 className="step-title">{dict.home.step3Title}</h3>
               <p className="step-desc">
-                Arkadaşlarını takip et, onların beğenilerini gör,
-                yeni içerikler keşfet ve kendi zevklerini paylaş.
+                {dict.home.step3Desc}
               </p>
             </div>
           </div>
@@ -352,24 +349,20 @@ export default function HomePage() {
         <div className="container">
           <div className="beta-cta-card">
             <div className="beta-badge">
-              <span>🔒</span> Kapalı Beta
+              <span>🔒</span> {dict.home.betaBadge.replace('🔒 ', '')}
             </div>
             <h2 className="beta-cta-title">
-              İlk kullananlar{" "}
-              <span className="gradient-text">arasında</span>
-              <br />
-              yer al
+              {dict.home.betaTitle1}{" "}
+              <span className="gradient-text">{dict.home.betaTitle2}</span>
             </h2>
             <p className="beta-cta-subtitle">
-              Mensola kapalı beta testine kabul edilen kullanıcılar, uygulamayı
-              herkesten önce deneyimleyecek ve geliştirme sürecine katkıda bulunacak.
-              Kontenjan sınırlıdır.
+              {dict.home.betaSubtitle}
             </p>
-            <Link href="/beta" className="btn-primary btn-large">
-              🚀 Beta Başvurusunu Yap
+            <Link href={`/${lang}/beta`} className="btn-primary btn-large">
+              {dict.home.betaBtn}
             </Link>
             <p className="beta-cta-note">
-              ✓ Ücretsiz &nbsp;&nbsp; ✓ Android &amp; iOS &nbsp;&nbsp; ✓ Erken erişim
+              {dict.home.betaNote}
             </p>
           </div>
         </div>
@@ -379,15 +372,15 @@ export default function HomePage() {
       <footer className="footer">
         <div className="container">
           <div className="footer-inner">
-            <Link href="/" className="footer-logo">
+            <Link href={`/${lang}`} className="footer-logo">
               <Image src="/icon.png" alt="Mensola" width={28} height={28} />
               <span>mensola</span>
             </Link>
             <p className="footer-copy">
-              © {new Date().getFullYear()} Mensola. Tüm hakları saklıdır.
+              © {new Date().getFullYear()} {dict.footer.copy}
             </p>
             <div className="footer-links">
-              <Link href="/beta" className="footer-link">Beta Başvurusu</Link>
+              <Link href={`/${lang}/beta`} className="footer-link">{dict.footer.betaApply}</Link>
             </div>
           </div>
         </div>
