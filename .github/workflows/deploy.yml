@@ -1,0 +1,24 @@
+name: Deploy Mensola
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy Web to VPS
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  key: ${{ secrets.SSH_KEY }}
+                  port: ${{ secrets.PORT }}
+                  script: |
+                      cd ~/mensola-web
+                      git pull origin main
+                      npm install
+                      npm run build
+                      pm2 reload mensola-web || pm2 start npm --name "mensola-web" -- start -- -p 3000
