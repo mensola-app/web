@@ -4,18 +4,18 @@ import "../globals.css";
 export const metadata: Metadata = {
   title: "Mensola — Discover, Share and Track",
   description:
-    "Gather your music, movies, and books all in one place with Mensola. Discover your tastes, share with your friends. Join the closed beta test!",
-  keywords: ["mensola", "music", "movie", "book", "social", "track", "beta"],
+    "Gather your music and movies all in one place with Mensola. Discover your tastes, share with your friends. Join the closed beta test!",
+  keywords: ["mensola", "music", "movie", "social", "track", "beta"],
   openGraph: {
     title: "Mensola — Discover, Share and Track",
-    description: "Track what's happening in your music, movie, and book world. Join the closed beta test!",
+    description: "Track what's happening in your music and movie world. Join the closed beta test!",
     type: "website",
     images: ["/icon.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Mensola — Closed Beta",
-    description: "Track what's happening in your music, movie, and book world.",
+    description: "Track what's happening in your music and movie world.",
   },
 };
 

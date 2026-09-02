@@ -95,7 +95,6 @@ export default async function HomePage(props: { params: Promise<{ lang: string }
                 <div className="mock-pills">
                   <div className="mock-pill active">{dict.home.mockPills[0]}</div>
                   <div className="mock-pill inactive">{dict.home.mockPills[1]}</div>
-                  <div className="mock-pill inactive">{dict.home.mockPills[2]}</div>
                 </div>
                 <div className="mock-cards">
                   {[
@@ -127,7 +126,6 @@ export default async function HomePage(props: { params: Promise<{ lang: string }
                 <div className="mock-pills">
                   <div className="mock-pill active">{dict.home.mockPills[0]}</div>
                   <div className="mock-pill inactive">{dict.home.mockPills[1]}</div>
-                  <div className="mock-pill inactive">{dict.home.mockPills[2]}</div>
                 </div>
                 <div className="mock-cards">
                   {[
@@ -178,11 +176,6 @@ export default async function HomePage(props: { params: Promise<{ lang: string }
                     <div className="mock-cat-icon">🎬</div>
                     <div className="mock-cat-count">342</div>
                     <div className="mock-cat-label">{dict.home.mockCatMovie}</div>
-                  </div>
-                  <div className="mock-category">
-                    <div className="mock-cat-icon">📚</div>
-                    <div className="mock-cat-count">89</div>
-                    <div className="mock-cat-label">{dict.home.mockCatBook}</div>
                   </div>
                 </div>
                 <div className="mock-cards">
@@ -277,13 +270,6 @@ export default async function HomePage(props: { params: Promise<{ lang: string }
               <p className="coming-soon-subtitle">{dict.home.soonSubtitle}</p>
             </div>
             <div className="coming-soon-grid">
-              <div className="coming-soon-card">
-                <span className="coming-soon-icon">📚</span>
-                <div className="coming-soon-info">
-                  <div className="coming-soon-title">{dict.home.soon1Title}</div>
-                  <div className="coming-soon-desc">{dict.home.soon1Desc}</div>
-                </div>
-              </div>
               <div className="coming-soon-card">
                 <span className="coming-soon-icon">🔍</span>
                 <div className="coming-soon-info">
