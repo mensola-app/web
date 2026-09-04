@@ -78,7 +78,10 @@
   },
   "footer": {
     "copy": "Mensola. All rights reserved.",
-    "betaApply": "Beta Application"
+    "betaApply": "Beta Application",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "deleteAccount": "Delete Account"
   },
   "beta": {
     "back": "← Back to Home",
@@ -131,6 +134,7 @@
     "modalAction": "Apply for Beta 🚀",
     "footerCopy": "Mensola. All rights reserved.",
     "footerPrivacy": "Privacy Policy",
-    "footerTerms": "Terms of Use"
+    "footerTerms": "Terms of Use",
+    "footerDeleteAccount": "Delete Account"
   }
 }

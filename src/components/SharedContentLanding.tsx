@@ -27,6 +27,7 @@ interface TeaserDict {
   footerCopy: string;
   footerPrivacy: string;
   footerTerms: string;
+  footerDeleteAccount?: string;
 }
 
 interface NavDict {
@@ -247,6 +248,8 @@ export default function SharedContentLanding({ dict, dictNav, lang }: Props) {
             <Link href={`/${lang}/privacy-policy`}>{dict.footerPrivacy}</Link>
             <span>•</span>
             <Link href={`/${lang}/terms`}>{dict.footerTerms}</Link>
+            <span>•</span>
+            <Link href={`/${lang}/delete-account`}>{dict.footerDeleteAccount || (lang === "tr" ? "Hesap Silme" : "Delete Account")}</Link>
           </div>
         </div>
       </footer>

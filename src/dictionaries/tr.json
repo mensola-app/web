@@ -78,7 +78,10 @@
   },
   "footer": {
     "copy": "Mensola. Tüm hakları saklıdır.",
-    "betaApply": "Beta Başvurusu"
+    "betaApply": "Beta Başvurusu",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Koşulları",
+    "deleteAccount": "Hesap Silme"
   },
   "beta": {
     "back": "← Ana Sayfaya Dön",
@@ -131,6 +134,7 @@
     "modalAction": "Beta Başvurusuna Git 🚀",
     "footerCopy": "Mensola. Tüm hakları saklıdır.",
     "footerPrivacy": "Gizlilik Politikası",
-    "footerTerms": "Kullanım Koşulları"
+    "footerTerms": "Kullanım Koşulları",
+    "footerDeleteAccount": "Hesap Silme"
   }
 }

@@ -367,6 +367,12 @@ export default async function HomePage(props: { params: Promise<{ lang: string }
             </p>
             <div className="footer-links">
               <Link href={`/${lang}/beta`} className="footer-link">{dict.footer.betaApply}</Link>
+              <span className="footer-sep">•</span>
+              <Link href={`/${lang}/privacy-policy`} className="footer-link">{dict.footer.privacy}</Link>
+              <span className="footer-sep">•</span>
+              <Link href={`/${lang}/terms`} className="footer-link">{dict.footer.terms}</Link>
+              <span className="footer-sep">•</span>
+              <Link href={`/${lang}/delete-account`} className="footer-link">{dict.footer.deleteAccount}</Link>
             </div>
           </div>
         </div>
