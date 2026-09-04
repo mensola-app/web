@@ -104,5 +104,33 @@
     "btnLoading": "Requesting...",
     "btnSubmit": "Request Early Access 🚀",
     "privacy": "No spam. We'll only notify you when your access is ready."
+  },
+  "teaser": {
+    "badge": "🔒 CLOSED BETA",
+    "appName": "Mensola",
+    "appCategory": "Culture, Music & Cinema Experience",
+    "titlePrefix": "View this content in the",
+    "titleHighlight": "Mensola",
+    "titleSuffix": "app",
+    "subtitle": "Mensola, where you can log and explore your culture, arts, and entertainment experiences, is currently in closed beta.",
+    "playTop": "COMING SOON ON",
+    "playBottom": "Google Play",
+    "playNotice": "Mensola is currently in closed beta. We will be available on the Google Play Store very soon!",
+    "playNoticeBtn": "Join Beta →",
+    "btnBeta": "🚀 Join Closed Beta",
+    "btnHome": "Back to Home",
+    "pills": [
+      "🎵 Music & Albums",
+      "🎬 Movies & TV Shows",
+      "✍️ Reviews & Ratings",
+      "👥 Social Sharing"
+    ],
+    "modalTitle": "Google Play Version Coming Soon",
+    "modalDesc": "Mensola is currently in an invitation-only closed beta test. Our Google Play Store release will be available to everyone very soon. Join the early access waitlist today to be among the first users!",
+    "modalClose": "Got it",
+    "modalAction": "Apply for Beta 🚀",
+    "footerCopy": "Mensola. All rights reserved.",
+    "footerPrivacy": "Privacy Policy",
+    "footerTerms": "Terms of Use"
   }
 }

@@ -104,5 +104,33 @@
     "btnLoading": "Gönderiliyor...",
     "btnSubmit": "Erken Erişim Talep Et 🚀",
     "privacy": "Spam yok. Sadece erişimin hazır olduğunda sana haber vereceğiz."
+  },
+  "teaser": {
+    "badge": "🔒 KAPALI BETA",
+    "appName": "Mensola",
+    "appCategory": "Kültür, Müzik ve Sinema Deneyimi",
+    "titlePrefix": "Bu içeriği",
+    "titleHighlight": "Mensola",
+    "titleSuffix": "uygulamasında görüntüleyin",
+    "subtitle": "Kültür, sanat ve eğlence deneyimlerinizi kaydedip keşfedebileceğiniz Mensola şu anda kapalı beta aşamasında.",
+    "playTop": "ÇOK YAKINDA",
+    "playBottom": "Google Play",
+    "playNotice": "Mensola şu anda kapalı beta sürecindedir. Çok yakında Google Play Store'da yerimizi alacağız!",
+    "playNoticeBtn": "Beta'ya Katıl →",
+    "btnBeta": "🚀 Kapalı Beta'ya Katıl",
+    "btnHome": "Ana Sayfaya Dön",
+    "pills": [
+      "🎵 Müzik & Albümler",
+      "🎬 Film & Diziler",
+      "✍️ Yorum & Puan",
+      "👥 Sosyal Paylaşım"
+    ],
+    "modalTitle": "Google Play Sürümü Çok Yakında",
+    "modalDesc": "Mensola şu anda davetiye usulü kapalı beta aşamasındadır. Google Play Store sürümümüz çok yakında herkese açılacak. Erken erişim listesine katılarak uygulamayı ilk deneyimleyenlerden olabilirsiniz!",
+    "modalClose": "Kapat",
+    "modalAction": "Beta Başvurusuna Git 🚀",
+    "footerCopy": "Mensola. Tüm hakları saklıdır.",
+    "footerPrivacy": "Gizlilik Politikası",
+    "footerTerms": "Kullanım Koşulları"
   }
 }
