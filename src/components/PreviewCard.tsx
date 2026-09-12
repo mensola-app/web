@@ -141,19 +141,18 @@ export default function PreviewCard({
     return `mensola://${getTargetRoute()}/${targetId}`;
   }, [getTargetRoute, targetId]);
 
-  // Compute Android Intent URL (opens app natively or falls back to Play Store)
+  // Compute Android Intent URL (opens app natively if installed, stays on page if not)
   const getIntentUrl = useCallback(() => {
-    return `intent://${getTargetRoute()}/${targetId}#Intent;scheme=mensola;package=com.enescdev.mensola;S.browser_fallback_url=${encodeURIComponent(PLAY_STORE_URL)};end`;
+    return `intent://${getTargetRoute()}/${targetId}#Intent;scheme=mensola;package=com.enescdev.mensola;end`;
   }, [getTargetRoute, targetId]);
 
-  // Deep link opening and fallback logic
-  const handleOpenApp = useCallback((isManual = false) => {
+  // Deep link opening logic (attempts to launch app without forcing Play Store)
+  const handleOpenApp = useCallback(() => {
     if (typeof window === "undefined") return;
 
     setIsRedirecting(true);
     const userAgent = navigator.userAgent || "";
     const isAndroid = /Android/i.test(userAgent);
-    const startTime = Date.now();
 
     if (isAndroid) {
       // Android Intent URL: Chrome / Samsung Internet launches app without blocking
@@ -165,17 +164,12 @@ export default function PreviewCard({
       window.location.href = deepLinkUrl;
     }
 
-    // Fallback: If app does not open within 1.8s and user remains on web page
+    // Reset redirecting banner after 2s so user stays seamlessly on the preview card
     const timer = setTimeout(() => {
       setIsRedirecting(false);
-      if (!document.hidden && Date.now() - startTime < 3500) {
-        if (isManual && !isAndroid) {
-          window.location.href = PLAY_STORE_URL;
-        }
-      }
-    }, 1800);
+    }, 2000);
 
-    // Cancel fallback redirect if app successfully launches and sends page to background
+    // Cancel state if app successfully launches and sends page to background
     const handleVisibilityChange = () => {
       if (document.hidden) {
         clearTimeout(timer);
@@ -198,7 +192,7 @@ export default function PreviewCard({
     }
 
     const timer = setTimeout(() => {
-      handleOpenApp(false);
+      handleOpenApp();
     }, 250);
 
     return () => clearTimeout(timer);
@@ -409,7 +403,7 @@ export default function PreviewCard({
               <button
                 type="button"
                 className="btn-open-app"
-                onClick={() => handleOpenApp(true)}
+                onClick={handleOpenApp}
                 id="btn-open-in-app"
               >
                 <Image src="/icon.png" alt="Mensola" width={22} height={22} />
